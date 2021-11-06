@@ -1,7 +1,7 @@
 import web3 from './web3';
 
 // const address ='0xf8E2db4541918e2Ed96450Cd91474fF3971b117c';
-const address = '0x7F1560FEFC6C7E6592d0a27EE099641Aa9E5ba5f'
+const address = '0xA07511588c0d5B9dDb63A0d14B5E53Da06E25166'
 // const abi =
 // [{"constant":true,"inputs":[],"name":"manager","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"pickWinner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getPlayers","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"enter","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"players","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]
 const abi =[
