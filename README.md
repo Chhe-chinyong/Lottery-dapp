@@ -1,2 +1,2 @@
-# Decentralized lottery smart contract
+# Decentralized lottery smart contract (React web app)
 
