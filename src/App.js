@@ -1,8 +1,8 @@
 
-import './App.css';
-import { useEffect, useState } from 'react';
+ 
+import { useEffect, useState, useRef } from 'react';
 import lottery from "./lottery";
-
+import MetaMaskOnboarding from '@metamask/onboarding';
 // import './App.css';
 import web3 from './web3';
 var Accounts = require('web3-eth-accounts');
@@ -10,28 +10,35 @@ var Accounts = require('web3-eth-accounts');
 // var accounts = new Accounts(window.web3.currentProvide);
 
 function App() {
+
+  const ONBOARD_TEXT = 'Click here to install MetaMask!';
+  const CONNECT_TEXT = 'Connect';
+  const CONNECTED_TEXT = 'Connected';
+
+  const [buttonText, setButtonText] = useState(ONBOARD_TEXT);
+  const [isDisabled, setDisabled] = useState(false);
+  const [accounts, setAccounts] =useState([]);
+  const onboarding = useRef();
+
+
   const [admin, setAdmin] = useState();
   const [lotterys, setLotterys] = useState();
   const [balance, setBalance] = useState('0');
 
+ useEffect(() => {
+    if (!onboarding.current) {
+      onboarding.current = new MetaMaskOnboarding();
+    }
+  }, []);
+
    useEffect(() => {
-    
-    // {admin: ƒ, 0xf851a440: ƒ, admin(): ƒ, getBalance: ƒ, 0x12065fe0: ƒ, …}
-    // 0x5d495aea: ƒ ()
-    // 0x12065fe0: ƒ ()
-    // 0xf71d96cb: ƒ ()
-    // 0xf851a440: ƒ ()
-    // admin: ƒ ()
-    // admin(): ƒ ()
-    // getBalance: ƒ ()
-    // getBalance(): ƒ ()
-    // pickWinner: ƒ ()
-    // pickWinner(): ƒ ()
-    // players: ƒ ()
-    // players(uint256): ƒ ()
-    // [[Prototype]]: Object
+     
+    function handleNewAccounts(newAccounts) {
+      setAccounts(newAccounts);
+    }
   
     const fetchData = async() => {
+
       // const manager = await lottery.methods.players().call();
       // const players = await lottery.methods.getPlayers().call();
       // const balance = await web3.eth.getBalance(lottery.options.address);
@@ -57,7 +64,33 @@ function App() {
       setAdmin(admin)
     }
     fetchData();
+
+    if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+      window.ethereum
+        .request({ method: 'eth_requestAccounts' })
+        .then(handleNewAccounts);
+      window.ethereum.on('accountsChanged', handleNewAccounts);
+      return () => {
+        window.ethereum.removeListener('accountsChanged', handleNewAccounts)
+        // window.ethereum.off('accountsChanged', handleNewAccounts);
+      };
+    }
   }, [admin]);
+
+
+  
+  useEffect(() => {
+    if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+      if (accounts.length > 0) {
+        setButtonText(CONNECTED_TEXT);
+        setDisabled(true);
+        onboarding.current.stopOnboarding();
+      } else {
+        setButtonText(CONNECT_TEXT);
+        setDisabled(false);
+      }
+    }
+  }, [accounts]);
 
 
   //subscribe to event
@@ -91,16 +124,30 @@ function App() {
     }
 
   }
+
+  const onClick = () => {
+    if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+      web3.ethereum
+        .request({ method: 'eth_requestAccounts' })
+        .then((newAccounts) => setAccounts(newAccounts));
+    } else {
+      onboarding.current.startOnboarding();
+    }
+  };
   return (
-    <div className="App">
+  <div className="App">
         <h1>Lottery by smart contract</h1>
         <h2>Total balance:  {balance ===  '0' ? '0' : balance} ETH </h2>
        
-      <h2>Admin  <a href="https://ropsten.etherscan.io/address/0xac56f689B36dC736301b3C5FAE880879057Ff65f" target={"_blank"} > {!admin ? "Loading" : admin} </a> </h2>
+      <h2>Admin  <a href="https://ropsten.etherscan.io/address/0xac56f689B36dC736301b3C5FAE880879057Ff65f" target={"_blank"} rel="noreferrer" > {!admin ? "Loading" : admin} </a> </h2>
 
-      {/* Button for admin */}
-      <button onClick={handleOnclick}>
-        pick the winner
+        {/* Button for admin */}
+        <button onClick={handleOnclick}>
+              pick the winner
+          </button>
+
+        <button disabled={isDisabled} onClick={onClick}>
+        {buttonText}
       </button>
       
     </div>
