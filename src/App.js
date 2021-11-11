@@ -124,6 +124,36 @@ function App() {
       onboarding.current.startOnboarding();
     }
   };
+
+  const handleOnJoin = async () => {
+    try {
+      const account = await web3.eth.accounts[0];
+      const fromAddress = await web3.eth.getAccounts();
+      console.log("from", fromAddress);
+      console.log("account", account);
+      const amount = "0.1";
+
+      const amountToSend = web3.utils.toWei(amount, "ether"); // Convert to wei value
+      // using the callback
+      web3.eth.sendTransaction({
+        from: fromAddress[0],
+        to: '0xA07511588c0d5B9dDb63A0d14B5E53Da06E25166',
+        // chain: "ropsten",
+        value: amountToSend,
+        chainId: 3
+      }, function (error, hash) {
+        console.log(hash);
+        console.log(error)
+      });
+    } catch (error) {
+      console.log(error);
+      const json = JSON.parse(error.Error);
+      console.log(json);
+    }
+
+
+  }
+
   return (
     <div className="App">
       <h1>Lottery by smart contract</h1>
@@ -139,6 +169,8 @@ function App() {
           {!admin ? "Loading" : admin}{" "}
         </a>{" "}
       </h2>
+      {/* Participant with smart contract */}
+      <button onClick={handleOnJoin}>Partipate</button>
 
       {/* Button for admin */}
       <button onClick={handleOnclick}>pick the winner</button>
