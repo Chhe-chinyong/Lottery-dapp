@@ -1,28 +1,11 @@
-<<<<<<< HEAD
 import { useEffect, useState, useRef } from "react";
 import lottery from "./lottery";
 import MetaMaskOnboarding from "@metamask/onboarding";
-=======
-
-import './App.css';
-import { useEffect, useState } from 'react';
-import lottery from "./lottery";
-<<<<<<< HEAD
-=======
-
-// import './App.css';
-import web3 from './web3';
-var Accounts = require('web3-eth-accounts');
->>>>>>> parent of d6aa18b (implement metamask)
-
->>>>>>> parent of d6aa18b (implement metamask)
 // import './App.css';
 import web3 from "./web3";
 var Accounts = require("web3-eth-accounts");
 
 function App() {
-<<<<<<< HEAD
-<<<<<<< HEAD
   const ONBOARD_TEXT = "Click here to install MetaMask!";
   const CONNECT_TEXT = "Connect";
   const CONNECTED_TEXT = "Connected";
@@ -32,16 +15,10 @@ function App() {
   const [accounts, setAccounts] = useState([]);
   const onboarding = useRef();
 
-=======
->>>>>>> parent of d6aa18b (implement metamask)
-=======
->>>>>>> parent of d6aa18b (implement metamask)
   const [admin, setAdmin] = useState();
   const [lotterys, setLotterys] = useState();
   const [balance, setBalance] = useState("0");
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   useEffect(() => {
     if (!onboarding.current) {
       onboarding.current = new MetaMaskOnboarding();
@@ -54,31 +31,6 @@ function App() {
     }
 
     const fetchData = async () => {
-=======
-=======
->>>>>>> parent of d6aa18b (implement metamask)
-   useEffect(() => {
-    
-    // {admin: ƒ, 0xf851a440: ƒ, admin(): ƒ, getBalance: ƒ, 0x12065fe0: ƒ, …}
-    // 0x5d495aea: ƒ ()
-    // 0x12065fe0: ƒ ()
-    // 0xf71d96cb: ƒ ()
-    // 0xf851a440: ƒ ()
-    // admin: ƒ ()
-    // admin(): ƒ ()
-    // getBalance: ƒ ()
-    // getBalance(): ƒ ()
-    // pickWinner: ƒ ()
-    // pickWinner(): ƒ ()
-    // players: ƒ ()
-    // players(uint256): ƒ ()
-    // [[Prototype]]: Object
-  
-    const fetchData = async() => {
-<<<<<<< HEAD
->>>>>>> parent of d6aa18b (implement metamask)
-=======
->>>>>>> parent of d6aa18b (implement metamask)
       // const manager = await lottery.methods.players().call();
       // const players = await lottery.methods.getPlayers().call();
       // const balance = await web3.eth.getBalance(lottery.options.address);
@@ -104,8 +56,6 @@ function App() {
       setAdmin(admin);
     };
     fetchData();
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
       window.ethereum
@@ -131,14 +81,6 @@ function App() {
       }
     }
   }, [accounts]);
-=======
-  }, [admin]);
-
->>>>>>> parent of d6aa18b (implement metamask)
-=======
-  }, [admin]);
-
->>>>>>> parent of d6aa18b (implement metamask)
 
   //subscribe to event
   lottery.events
@@ -172,8 +114,6 @@ function App() {
       console.log(json);
     }
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
   const onClick = () => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
@@ -205,25 +145,6 @@ function App() {
 
       <button disabled={isDisabled} onClick={onClick}>
         {buttonText}
-=======
-  return (
-    <div className="App">
-=======
-  return (
-    <div className="App">
->>>>>>> parent of d6aa18b (implement metamask)
-        <h1>Lottery by smart contract</h1>
-        <h2>Total balance:  {balance ===  '0' ? '0' : balance} ETH </h2>
-       
-      <h2>Admin  <a href="https://ropsten.etherscan.io/address/0xac56f689B36dC736301b3C5FAE880879057Ff65f" target={"_blank"} > {!admin ? "Loading" : admin} </a> </h2>
-
-      {/* Button for admin */}
-      <button onClick={handleOnclick}>
-        pick the winner
-<<<<<<< HEAD
->>>>>>> parent of d6aa18b (implement metamask)
-=======
->>>>>>> parent of d6aa18b (implement metamask)
       </button>
     </div>
   );

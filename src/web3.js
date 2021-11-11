@@ -1,14 +1,5 @@
-<<<<<<< HEAD
-import Web3 from "web3";
-=======
-import Web3 from 'web3';
 
-// binding our instance of web3 with Metamask's 
-const web3 = new Web3(window.web3.currentProvider);
-<<<<<<< HEAD
->>>>>>> parent of d6aa18b (implement metamask)
-=======
->>>>>>> parent of d6aa18b (implement metamask)
+import Web3 from 'web3';
 
 // binding our instance of web3 with Metamask's
 const web3 = new Web3(
