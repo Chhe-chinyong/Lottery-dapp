@@ -155,9 +155,9 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>Lottery by smart contract</h1>
-      <h2>Total balance: {balance === "0" ? "0" : balance} ETH </h2>
+    <div style={{ textAlign: "center", }}>
+      <h1 style={{ fontSize: "2.5rem" }}>Lottery by smart contract</h1>
+      <h2>Total Reward: {balance === "0" ? "0" : balance} ETH 💰💰</h2>
 
       <h2>
         Admin{" "}
@@ -170,14 +170,28 @@ function App() {
         </a>{" "}
       </h2>
       {/* Participant with smart contract */}
-      <button onClick={handleOnJoin}>Partipate</button>
+      <button onClick={handleOnJoin} style={{ padding: "0.5rem 1rem", margin: "1rem", fontWeight: "bold" }}>Partipate</button>
 
       {/* Button for admin */}
-      <button onClick={handleOnclick}>pick the winner</button>
+      <button onClick={handleOnclick} style={{ padding: "0.5rem 1rem", margin: "1rem", fontWeight: "bold" }}>pick the winner</button>
 
-      <button disabled={isDisabled} onClick={onClick}>
+      <button disabled={isDisabled} onClick={onClick} style={{ padding: "0.5rem 1rem", margin: "1rem", fontWeight: "bold" }} >
         {buttonText}
       </button>
+      <br />
+      <ul style={{ display: "inline-block" }}>
+        <p style={{ fontWeight: "bolder", color: "#f5222d" }}>RULE to participate in lottery: </p>
+        <li>
+          All players need 1ETH in order to play this lottery
+        </li>
+        <li>
+          The winner of the prize is randomly gernerated by the computer
+        </li>
+        <li>
+          The winner take 90% the prize pool, and 10% for developer.
+        </li>
+      </ul>
+
     </div>
   );
 }
