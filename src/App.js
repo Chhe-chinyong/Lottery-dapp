@@ -45,7 +45,11 @@ function App() {
       // console.log(await lottery.methods)
       const admin = await lottery.methods.admin().call();
       // console.log(await lottery.methods.getBalance().call({from: admin})
+      const BalanceInPool = await lottery.methods.getBalance().call();
+      const BalanceInPoolConverted = web3.utils.fromWei(BalanceInPool, "ether")
+      setBalance(BalanceInPoolConverted)
       console.log("admin", admin);
+      console.log('hi')
       // lottery.events.BalancePool()
       // .on("data", function(event) {
       //   let lottery = event.returnValues;
@@ -100,8 +104,6 @@ function App() {
     .on("error", console.error);
 
   async function handleOnclick(e) {
-    // console.log(lottery.defaultChain)
-    // console.log(lottery.options)
     try {
       const account = await web3.eth.accounts[0];
       const fromAddress = await web3.eth.getAccounts();
@@ -131,13 +133,13 @@ function App() {
       const fromAddress = await web3.eth.getAccounts();
       console.log("from", fromAddress);
       console.log("account", account);
-      const amount = "0.1";
+      const amount = "1";
 
       const amountToSend = web3.utils.toWei(amount, "ether"); // Convert to wei value
       // using the callback
       web3.eth.sendTransaction({
         from: fromAddress[0],
-        to: '0xA07511588c0d5B9dDb63A0d14B5E53Da06E25166',
+        to: '0x4F028A0f6AC60CEB8E2303E76623b7f2BA3f5764',
         // chain: "ropsten",
         value: amountToSend,
         chainId: 3
@@ -188,7 +190,7 @@ function App() {
           The winner of the prize is randomly gernerated by the computer
         </li>
         <li>
-          The winner take 90% the prize pool, and 10% for developer.
+          The winner take 90% the pool prize, and share 10% for developer.
         </li>
       </ul>
 
