@@ -16,6 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "eslint .",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -39,7 +40,11 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": " 7.32.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint": "^7.32.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "prettier": "^2.4.1"
   }
 }
