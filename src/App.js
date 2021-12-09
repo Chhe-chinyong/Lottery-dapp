@@ -154,15 +154,18 @@ function App() {
         <div style={{ textAlign: 'center' }}>
             <h1 style={{ fontSize: '2.5rem' }}>Lottery by smart contract</h1>
             <h2>Total Reward: {balance === '0' ? '0' : balance} ETH 💰💰</h2>
-
             <h2>
-                Admin{' '}
                 <a
-                    href="https://ropsten.etherscan.io/address/0xac56f689B36dC736301b3C5FAE880879057Ff65f"
+                    href="https://ropsten.etherscan.io/address/0x4F028A0f6AC60CEB8E2303E76623b7f2BA3f5764"
                     target={'_blank'}
                     rel="noreferrer"
                 >
-                    {!admin ? 'Loading' : admin}{' '}
+                    Contract
+                </a>{' '}
+            </h2>
+            <h2>
+                <a href={`https://ropsten.etherscan.io/address/${admin}`} target={'_blank'} rel="noreferrer">
+                    {!admin ? 'Loading' : 'Admin'}{' '}
                 </a>{' '}
             </h2>
             {/* Participant with smart contract */}
