@@ -175,7 +175,7 @@ function App() {
 
             {/* Button for admin */}
             <button onClick={handleOnclick} style={{ padding: '0.5rem 1rem', margin: '1rem', fontWeight: 'bold' }}>
-                pick the winner
+                please pick the winner
             </button>
 
             <button
