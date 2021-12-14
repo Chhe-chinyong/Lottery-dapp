@@ -3,8 +3,10 @@ import lottery from './lottery';
 import MetaMaskOnboarding from '@metamask/onboarding';
 // import './App.css';
 import web3 from './web3';
+require('dotenv').config();
 
 function App() {
+    console.log(process.env.REACT_APP_MY_ENV_VALUE);
     const ONBOARD_TEXT = 'Click here to install MetaMask!';
     const CONNECT_TEXT = 'Connect';
     const CONNECTED_TEXT = 'Connected';
@@ -40,7 +42,8 @@ function App() {
             // console.log(await lottery.methods.players(2).call());
             // console.log(await lottery.methods)
             // console.log(await lottery.methods.getBalance().call({from: admin})
-            const BalanceInPool = await lottery?.methods.getBalance().call();
+            const BalanceInPool = await lottery?.methods?.getBalance().call();
+            console.log('BalanceInPool', BalanceInPool);
             const BalanceInPoolConverted = web3.utils.fromWei(BalanceInPool, 'ether');
             setBalance(BalanceInPoolConverted);
             // lottery.events.BalancePool()
@@ -103,7 +106,7 @@ function App() {
             await lottery.methods.pickWinner().send({ from: fromAddress[0] });
         } catch (error) {
             console.log(error);
-            const json = JSON.parse(error.Error);
+            const json = JSON.parse(error.Error || {});
             console.log(json);
         }
     }
