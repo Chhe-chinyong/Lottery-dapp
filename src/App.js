@@ -13,7 +13,6 @@ function App() {
     const [accounts, setAccounts] = useState([]);
     const onboarding = useRef();
 
-    const [admin, setAdmin] = useState();
     const [balance, setBalance] = useState('0');
 
     useEffect(() => {
@@ -40,13 +39,10 @@ function App() {
             // console.log(await lottery.methods.admin().call());
             // console.log(await lottery.methods.players(2).call());
             // console.log(await lottery.methods)
-            const admin = await lottery.methods.admin().call();
             // console.log(await lottery.methods.getBalance().call({from: admin})
-            const BalanceInPool = await lottery.methods.getBalance().call();
+            const BalanceInPool = await lottery?.methods.getBalance().call();
             const BalanceInPoolConverted = web3.utils.fromWei(BalanceInPool, 'ether');
             setBalance(BalanceInPoolConverted);
-            console.log('admin', admin);
-            console.log('hi');
             // lottery.events.BalancePool()
             // .on("data", function(event) {
             //   let lottery = event.returnValues;
@@ -54,7 +50,7 @@ function App() {
             //   console.log(event);
             //   console.log("Currently balance in pool",  lottery.balance);
             // }).on("error", console.error);
-            setAdmin(admin);
+            // setAdmin(admin);
         };
         fetchData();
 
@@ -66,7 +62,7 @@ function App() {
                 // window.ethereum.off('accountsChanged', handleNewAccounts);
             };
         }
-    }, [admin]);
+    }, []);
 
     useEffect(() => {
         if (MetaMaskOnboarding.isMetaMaskInstalled()) {
@@ -164,8 +160,12 @@ function App() {
                 </a>{' '}
             </h2>
             <h2>
-                <a href={`https://ropsten.etherscan.io/address/${admin}`} target={'_blank'} rel="noreferrer">
-                    {!admin ? 'Loading' : 'Admin'}{' '}
+                <a
+                    href={`https://ropsten.etherscan.io/address/0xaD5c2d4e68AcbB1DabCcfDB9224d2c49760E8b88`}
+                    target={'_blank'}
+                    rel="noreferrer"
+                >
+                    Admin
                 </a>{' '}
             </h2>
             {/* Participant with smart contract */}
