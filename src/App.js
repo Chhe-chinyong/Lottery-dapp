@@ -14,7 +14,7 @@ function App() {
     const [isDisabled, setDisabled] = useState(false);
     const [accounts, setAccounts] = useState([]);
     const onboarding = useRef();
-
+    // hi guyss
     const [balance, setBalance] = useState('0');
 
     useEffect(() => {
